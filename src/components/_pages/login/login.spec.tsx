@@ -1,9 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import Login from '.'
+import mockRouter from 'next-router-mock'
 
-describe('Test Login component', () => {
-  vi.mock('next/navigation', () => require('next-router-mock'))
+const push = vi.fn()
+vi.mock('next/navigation', () => require('next-router-mock'))
 
+describe('Test LoginForm component', () => {
   it('Should be a title writed "Sign in"', async () => {
     render(<Login />)
 
@@ -44,5 +46,16 @@ describe('Test Login component', () => {
     const inputPassword = await screen.findByPlaceholderText('Insira sua senha')
 
     expect(inputPassword).toBeInTheDocument()
+  })
+
+  it('should call router.push once on button click', async () => {
+    mockRouter.push = push
+
+    render(<Login />)
+
+    const button = await screen.findByRole('button')
+    fireEvent.click(button)
+
+    expect(push).toHaveBeenCalledTimes(1)
   })
 })
