@@ -29,7 +29,7 @@ function Login() {
         />
         <button
           className='w-full mt-2 p-3 text-white rounded bg-purple-500'
-          // onClick={handleSubmit}z
+          onClick={handleSubmit}
         >
           Entrar
         </button>
