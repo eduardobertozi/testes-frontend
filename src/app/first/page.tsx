@@ -1,4 +1,4 @@
-export default function App() {
+export default function First() {
   return (
     <div>
       <h1>Hello World</h1>

@@ -54,4 +54,14 @@ describe('Test a sign up page component', () => {
 
     expect(push).toHaveBeenCalledTimes(1)
   })
+
+  it('should have a link to /login page', async () => {
+    render(<SignUpPage />)
+
+    const link = await screen.findByRole('link', {
+      name: 'Já tem cadastro? Clique aqui',
+    })
+
+    expect(link).toBeInTheDocument()
+  })
 })

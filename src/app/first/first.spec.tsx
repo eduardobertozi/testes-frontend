@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react"
-import App from "@/components/_pages/app"
+import { render, screen } from '@testing-library/react'
+import App from './page'
 
 describe('Test default page', () => {
   /* it ('Should have a title on page', async () => {
@@ -10,7 +10,7 @@ describe('Test default page', () => {
     expect(title).toBeInTheDocument()
   }) */
 
-  it ('Should have two titles on page', async () => {
+  it('Should have two titles on page', async () => {
     render(<App />)
 
     const title = await screen.findAllByRole('heading')
@@ -18,11 +18,11 @@ describe('Test default page', () => {
     expect(title).toHaveLength(2)
   })
 
-  it ('Should have two titles writed "hello world"', async () => {
+  it('Should have two titles writed "hello world"', async () => {
     render(<App />)
 
     const title = await screen.findByRole('heading', {
-      name: 'Hello World' // included
+      name: 'Hello World', // included
     })
 
     // expect(title.textContent).toBe('Hello World')

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  border-color: #4a4a4a;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: #2f2f2e;
+    color: #f2f2f3;
+  }
+}

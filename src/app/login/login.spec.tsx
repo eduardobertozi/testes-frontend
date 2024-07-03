@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import Login from '.'
+import Login from './page'
 import mockRouter from 'next-router-mock'
 
 const push = vi.fn()
@@ -57,5 +57,15 @@ describe('Test LoginForm component', () => {
     fireEvent.click(button)
 
     expect(push).toHaveBeenCalledTimes(1)
+  })
+
+  it('should have a link to /signup page', async () => {
+    render(<Login />)
+
+    const link = await screen.findByRole('link', {
+      name: 'Não tem cadastro? Clique aqui',
+    })
+
+    expect(link).toBeInTheDocument()
   })
 })
