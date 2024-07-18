@@ -1,9 +1,11 @@
+'use server'
+
 import { PokemonType } from '@/types/pokemon'
 
 const BASE_URL = 'http://localhost:3001'
 
 export async function fetchPokemonList(): Promise<PokemonType[]> {
-  const response = await fetch('http://localhost:3001/pokemons')
+  const response = await fetch(`${BASE_URL}/pokemons`)
   return await response.json()
 }
 
