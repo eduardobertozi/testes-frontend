@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { PokemonList } from '.'
 import { faker } from '@faker-js/faker'
+import { act } from 'react'
 
 const mockFetchListPokemonFn = vi.fn().mockImplementation(async () => {
   return [
@@ -21,7 +22,9 @@ const mockFetchListPokemonFn = vi.fn().mockImplementation(async () => {
 
 describe('Testing PokemonList component', () => {
   it('should have a list with ten pokemons', async () => {
-    render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    await act(async () =>
+      render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    )
 
     const items = await screen.findAllByRole('listitem')
 
@@ -29,7 +32,9 @@ describe('Testing PokemonList component', () => {
   })
 
   it('should have a pikachu on list', async () => {
-    render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    await act(async () =>
+      render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    )
 
     const pokemonsList = await mockFetchListPokemonFn()
 
@@ -42,7 +47,9 @@ describe('Testing PokemonList component', () => {
   })
 
   it('should have a link to pokemon page', async () => {
-    render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    await act(async () =>
+      render(<PokemonList fetchPokemonList={mockFetchListPokemonFn} />)
+    )
 
     const link = await screen.findAllByRole('link')
 
