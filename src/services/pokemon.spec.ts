@@ -2,8 +2,7 @@
 import { PokemonType } from '@/types/pokemon'
 import { faker } from '@faker-js/faker'
 import { fetchPokemonDetails, fetchPokemonList } from './pokemons'
-
-global.fetch = vi.fn()
+import { vi } from 'vitest'
 
 function createFetchResponse(data: any) {
   return { json: () => new Promise((resolve) => resolve(data)) }
@@ -26,7 +25,9 @@ describe('Test pokemon service', () => {
       },
     ]
 
-    fetch.mockResolvedValue(createFetchResponse(pokemonListResponse))
+    global.fetch = vi
+      .fn()
+      .mockResolvedValue(createFetchResponse(pokemonListResponse))
 
     const pokemonList = await fetchPokemonList()
 
@@ -42,7 +43,9 @@ describe('Test pokemon service', () => {
       type: faker.animal.type(),
     }
 
-    fetch.mockResolvedValue(createFetchResponse(pokemonDetailResponse))
+    global.fetch = vi
+      .fn()
+      .mockResolvedValue(createFetchResponse(pokemonDetailResponse))
 
     const pokemon = await fetchPokemonDetails(1)
 

@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --ui",
+    "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "apis": "json-server --watch ./src/lib/pokemons.json --port 3001"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -18,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
-    "testes-frontend": "link:"
+    "testes-frontend": "link:",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

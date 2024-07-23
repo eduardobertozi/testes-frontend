@@ -3,25 +3,18 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
   test: {
     globals: true,
     environment: 'jsdom',
+    dir: './src',
     setupFiles: ['./src/setup.tests.ts'],
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
-      include: ['src/**/*.{ts,tsx}'],
-      exclude: ['*/types/*', 'layout.tsx', '*/**/layout.tsx'],
+      exclude: ['**/node_modules/**', '**/.next/**', '**/*.d.ts', '*.config.js', '*.config.ts', "**/env.mjs", "**/config/*.ts", "**/index.ts",  "**/page.tsx",  "**/layout.tsx",  "**/error.tss",  "**/loadign.tss"],
+      reporter: ['lcov', 'text'],
     },
-  },
-  resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: path.resolve(__dirname, './src'),
-      },
-    ],
-  },
+  }
 })
